@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  url_path: MyString
+  base_revision: 1
+  last_revision: 1
+  active: false
+
+two:
+  name: MyString
+  url_path: MyString
+  base_revision: 1
+  last_revision: 1
+  active: false

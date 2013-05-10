@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Display Name</th>
+    <th>Url Path</th>
+    <th>Base Revision</th>
+    <th>Last Revision</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= @project.name %></td>
+    <td><%= @project.display_name %></td>
+    <td><%= @project.url_path %></td>
+    <td><%= @project.base_revision %></td>
+    <td><%= @project.last_revision %></td>
+    <td><%= active_flag_display(@project.active) %></td>
+    <td><%= link_to 'Edit', edit_project_path(@project) %></td>
+    <td><%= link_to 'Destroy', @project, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+</table>
+
+
+<%= render 'commits/put_commits' %>
+
+<br />
+
+<%= link_to 'Back', projects_path %>

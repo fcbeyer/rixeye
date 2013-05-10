@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Activity</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<% if browser.ie? %>
+  <h5 class="alert-danger">This application is not designed to work in IE.  Please switch over to Chrome or Firefox for a better experience</h5>
+<% end %>
+<body>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/"><i class="icon-home"></i></a>
+      <ul class="nav">
+        <ul class="nav">
+        	<li class="divider-vertical"></li> 
+  			<li class="dropdown">
+    			<a href="#"  
+          			class="dropdown-toggle"  
+          			data-toggle="dropdown">  
+          			Projects
+          			<b class="caret"></b>  
+    			</a>  
+    			<ul class="dropdown-menu">
+    				<% @project_list.each do |project| %>
+    				    <li><%= link_to project.display_name, project %></li>
+     				<% end %> 
+    			</ul>  
+  			</li>  
+        	<li class="divider-vertical"></li> 
+  			<li class="dropdown">
+    			<a href="#"  
+          			class="dropdown-toggle"  
+          			data-toggle="dropdown">  
+          			Find Revisions 
+          			<b class="caret"></b>  
+    			</a>  
+    			<ul class="dropdown-menu">
+    				<% @project_list.each do |project| %>
+    				    <li><button <%= display_button("small","primary") %> onclick="searchRevisions('<%= get_find_revisions_url(project) %>')" type="button"><%= project.display_name %></button></li>
+     				<% end %> 
+    			</ul>  
+  			</li>
+		</ul>
+		<li class="divider-vertical"></li>
+		<li><button <%= display_button("small","info") %> onclick="askPermission()" type="button">Enable Notifications</button></td></li>
+		<li class="divider-vertical"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%= yield %>
+
+</body>
+</html>

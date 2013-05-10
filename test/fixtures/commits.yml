@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  issue: MyString
+  revision: 1
+  commmitted_at: 2013-05-09 07:54:57
+  author: MyString
+  message: MyString
+
+two:
+  issue: MyString
+  revision: 1
+  commmitted_at: 2013-05-09 07:54:57
+  author: MyString
+  message: MyString

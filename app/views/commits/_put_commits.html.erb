@@ -1,0 +1,19 @@
+<table id="projectRevions" class="table table-bordered table-hover ">
+  <tr>
+  	<th>Author</th>
+    <th>Revision</th>
+    <th>Jira Link</th>
+    <th>Message</th>
+    <th>Date</th>
+  </tr>
+
+<% @commits.each do |commit| %>
+  <tr>
+    <td><%= commit.author %></td>
+    <td><%= commit.revision_number %></td>
+    <td><%= create_jira_link(commit) %></td>
+    <td><%= commit.message %></td>
+    <td><%= time_ago_in_words(commit.committed_at) %></td>
+  </tr>
+<% end %>
+</table>

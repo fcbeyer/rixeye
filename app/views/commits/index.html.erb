@@ -1,0 +1,31 @@
+<h1>Listing commits</h1>
+
+<table>
+  <tr>
+    <th>Issue</th>
+    <th>Revision</th>
+    <th>Commmitted at</th>
+    <th>Author</th>
+    <th>Message</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @commits.each do |commit| %>
+  <tr>
+    <td><%= commit.issue %></td>
+    <td><%= commit.revision_number %></td>
+    <td><%= commit.commmitted_at %></td>
+    <td><%= commit.author %></td>
+    <td><%= commit.message %></td>
+    <td><%= link_to 'Show', [@current_project,commit] %></td>
+    <td><%= link_to 'Edit', edit_project_commit_path(@current_project,commit) %></td>
+    <td><%= link_to 'Destroy', [@current_project, commit], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Commit', new_project_commit_path %>

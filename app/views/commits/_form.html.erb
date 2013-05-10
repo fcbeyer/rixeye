@@ -1,0 +1,37 @@
+<%= form_for([@current_project,@commit]) do |f| %>
+  <% if @commit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@commit.errors.count, "error") %> prohibited this commit from being saved:</h2>
+
+      <ul>
+      <% @commit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :issue %><br />
+    <%= f.text_field :issue %>
+  </div>
+  <div class="field">
+    <%= f.label :revision_number %><br />
+    <%= f.number_field :revision_number %>
+  </div>
+  <div class="field">
+    <%= f.label :commmitted_at %><br />
+    <%= f.datetime_select :commmitted_at %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br />
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_field :message %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

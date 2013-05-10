@@ -1,0 +1,33 @@
+<h1>Listing Projects</h1>
+
+<table class="table table-bordered table-condensed table-hover">
+	<thead>
+	  <tr>
+		<th>Name</th>
+		<th>Url Path</th>
+		<th>Base Revision</th>
+		<th>Last Revision</th>
+		<th>Active</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	  </tr>
+	</thead>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= project.display_name %></td>
+    <td><%= project.url_path %></td>
+    <td><%= project.base_revision %></td>
+    <td><%= project.last_revision %></td>
+    <td><%= active_flag_display(project.active) %></td>
+    <td><%= link_to 'Show', project %></td>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project', new_project_path %>

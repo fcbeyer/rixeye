@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Issue:</b>
+  <%= @commit.issue %>
+</p>
+
+<p>
+  <b>Revision:</b>
+  <%= @commit.revision_number %>
+</p>
+
+<p>
+  <b>Commmitted at:</b>
+  <%= @commit.commmitted_at %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @commit.author %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @commit.message %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_commit_path([@current_project,@commit]) %> |
+<%= link_to 'Back', project_commits_path %>
