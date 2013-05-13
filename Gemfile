@@ -20,6 +20,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+if defined?(JRUBY_VERSION)
+  gem 'activerecord-jdbcmysql-adapter'
+else
+  gem 'mysql2'
+  gem 'thin'
+end
+
 gem 'jquery-rails'
 
 gem 'json'
