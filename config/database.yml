@@ -7,10 +7,10 @@ development:
   port: 3306
   adapter: jdbcmysql
   encoding: utf8
-  database: perf_reports
+  database: project_activity
   pool: 5
-  username: cukeperf
-  password: cuke123
+  username: projact
+  password: projact123
   host: allservers-t
   timeout: 5000
 
@@ -27,9 +27,9 @@ production:
   port: 3306
   adapter: jdbcmysql
   encoding: utf8
-  database: perf_reports
+  database: project_activity
   pool: 5
-  username: cukeperf
-  password: cuke123
+  username: projact
+  password: projact123
   host: allservers-t
   timeout: 5000
