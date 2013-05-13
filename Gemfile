@@ -28,8 +28,6 @@ gem 'jquery-rails'
 
 gem 'json'
 
-gem 'thin'
-
 gem 'yaml_db'
 
 gem 'bootstrap-sass'
