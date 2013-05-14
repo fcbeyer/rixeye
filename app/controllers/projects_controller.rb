@@ -6,16 +6,15 @@ class ProjectsController < ApplicationController
   
   def find_revisions
   	project = Project.find(params[:id])
-  	log_file = "log.xml"
   	rev_from = project.last_revision.nil? ? project.base_revision : project.last_revision + 1
   	rev_to = "HEAD"
   	revision_results = []
   	problem = false
   	have_new_revision_data = true
-  	%x(svn log #{project.url_path} -r#{rev_from}:#{rev_to} --xml > #{log_file})
   	
   	begin
-  		doc = Nokogiri::XML(File.open(log_file))
+  		xml = %x(svn log #{project.url_path} -r#{rev_from}:#{rev_to} --xml)
+  		doc = Nokogiri::XML(xml)
   		if !doc.css('log logentry').empty?
 		  	doc.css('log logentry').each do |entry|
 		  		msg = parse_message(entry.css('msg').text)
