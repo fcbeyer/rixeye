@@ -6,4 +6,12 @@ module ProjectsHelper
 		return msg
 	end
 	
+	def display_time(time)
+		if time.nil?
+			return "Has not run"
+		else
+			return time_ago_in_words(time) + " ago"
+		end
+	end
+	
 end
