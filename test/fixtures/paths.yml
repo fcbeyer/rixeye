@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kind: MyString
+  action: MyString
+  file: MyString
+  commits_id: 1
+
+two:
+  kind: MyString
+  action: MyString
+  file: MyString
+  commits_id: 1

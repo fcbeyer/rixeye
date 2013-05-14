@@ -32,16 +32,28 @@ class ProjectsController < ApplicationController
 	  		cur_revision.author = entry.css('author').text
 	  		cur_revision.message = msg['complete']
 	  		cur_revision.save
+	  		entry.css('paths path').each do |path|
+	  			cur_path = Path.new
+	  			cur_path.commit_id = cur_revision.id
+	  			temp = path.attribute('kind')
+	  			cur_path.kind = temp.to_s
+	  			temp = path.attribute('action')
+	  			cur_path.action = temp.to_s
+	  			cur_path.file = path.text
+	  			cur_path.save
+	  		end
 	  	end
 	  	
 	  	#update project.last_revision to the last one we found just now
 	  	temp = doc.css('log logentry').last.attribute('revision')
 	  	project.last_revision = temp.to_s
-	  	project.save
 	  else
 	  	#nothing new was found
 	  	have_new_revision_data = false
 	  end
+	  
+	  project.last_run_time = Time.now
+	  project.save
   	
   	revision_results.push(have_new_revision_data)
   	revision_results.push(project.display_name)

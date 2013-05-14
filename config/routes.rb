@@ -1,7 +1,10 @@
 Projectactivity::Application.routes.draw do
 
+
   resources :projects do
-  	resources :commits
+  	resources :commits do
+  		resources :paths
+  	end
   end
 
 
