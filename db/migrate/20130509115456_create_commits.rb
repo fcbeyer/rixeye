@@ -5,7 +5,7 @@ class CreateCommits < ActiveRecord::Migration
       t.integer :revision_number
       t.datetime :committed_at
       t.string :author
-      t.string :message
+      t.text :message
 
       t.timestamps
     end
