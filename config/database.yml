@@ -17,7 +17,7 @@ development:
   pool: 5
   username: projact
   password: projact123
-  host: allservers-t
+  host: allservers
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
@@ -37,5 +37,5 @@ production:
   pool: 5
   username: projact
   password: projact123
-  host: allservers-t
+  host: allservers
   timeout: 5000
