@@ -11,7 +11,7 @@ module ApplicationHelper
  	end
  	
  	def get_find_revisions_url(project)
- 		root_url + find_revisions_project_path(project.id)
+ 		find_revisions_project_path(project.id)
  	end
  	
  	def display_button(size, color)
