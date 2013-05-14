@@ -1,0 +1,29 @@
+<h1>Listing paths</h1>
+
+<table>
+  <tr>
+    <th>Kind</th>
+    <th>Action</th>
+    <th>File</th>
+    <th>Commits</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @paths.each do |path| %>
+  <tr>
+    <td><%= path.kind %></td>
+    <td><%= path.action %></td>
+    <td><%= path.file %></td>
+    <td><%= path.commits_id %></td>
+    <td><%= link_to 'Show', path %></td>
+    <td><%= link_to 'Edit', edit_path_path(path) %></td>
+    <td><%= link_to 'Destroy', path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Path', new_path_path %>
