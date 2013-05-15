@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   	have_new_revision_data = true
   	
   	begin
-  		xml = %x(svn log #{project.url_path} -r#{rev_from}:#{rev_to} --xml)
+  		xml = %x(svn log --verbose --username build --password build #{project.url_path} -r#{rev_from}:#{rev_to} --xml)
   		doc = Nokogiri::XML(xml)
   		if !doc.css('log logentry').empty?
 		  	doc.css('log logentry').each do |entry|
