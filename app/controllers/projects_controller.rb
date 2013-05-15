@@ -7,14 +7,15 @@ class ProjectsController < ApplicationController
   def find_revisions
   	project = Project.find(params[:id])
   	rev_from = project.last_revision.nil? ? project.base_revision : project.last_revision + 1
+  	log_file = project.name + ".xml"
   	rev_to = "HEAD"
   	revision_results = []
   	problem = false
   	have_new_revision_data = true
   	
   	begin
-  		xml = %x(svn log --verbose --username build --password build #{project.url_path} -r#{rev_from}:#{rev_to} --xml)
-  		doc = Nokogiri::XML(xml)
+  		response = system "svn log --verbose --username build --password build #{project.url_path} -r#{rev_from}:#{rev_to} --xml > #{log_file}"
+  		doc = Nokogiri::XML(File.open(log_file))
   		if !doc.css('log logentry').empty?
 		  	doc.css('log logentry').each do |entry|
 		  		msg = parse_message(entry.css('msg').text)
@@ -29,7 +30,7 @@ class ProjectsController < ApplicationController
 		  		cur_revision.save
 		  		entry.css('paths path').each do |path|
 		  			cur_path = Path.new
-		  			cur_path.commit_id = cur_revision.id
+		  			cur_path.commits_id = cur_revision.id
 		  			temp = path.attribute('kind')
 		  			cur_path.kind = temp.to_s
 		  			temp = path.attribute('action')
