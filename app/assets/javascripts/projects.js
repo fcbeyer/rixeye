@@ -27,6 +27,10 @@ function searchRevisionsComplete(data){
 				myNotification = "No new data was found"
 			}
 		}
-		window.webkitNotifications.createNotification('http://www.patientkeeper.com/images/patientkeeper.gif',mySubject,myNotification).show();
+		var notification = window.webkitNotifications.createNotification('http://www.patientkeeper.com/images/patientkeeper.gif',mySubject,myNotification);
+		notification.show();
+		setTimeout(function(){
+			notification.cancel();
+		}, 5000);
 	}
 }

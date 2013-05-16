@@ -17,7 +17,7 @@
 
 <% @projects.each do |project| %>
   <tr>
-    <td><%= link to project.display_name, project %></td>
+    <td><%= link_to project.display_name, project %></td>
     <td><%= project.url_path %></td>
     <td><%= project.base_revision %></td>
     <td><%= project.last_revision %></td>
