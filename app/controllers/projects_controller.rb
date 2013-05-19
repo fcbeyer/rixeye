@@ -78,7 +78,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @commits = @project.commits.order("committed_at desc")
+    
+    @commits = @project.commits.order("committed_at desc").group_by { |commit| commit.committed_at.to_date}
     
     @commits_paginated = @project.commits.order("committed_at desc").page params[:page]
 
