@@ -5,5 +5,5 @@ class Commit < ActiveRecord::Base
   
   belongs_to :project
   
-  scope :display, where(:active => true)
+  paginates_per 35
 end

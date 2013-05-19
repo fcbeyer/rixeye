@@ -79,6 +79,8 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @commits = @project.commits.order("committed_at desc")
+    
+    @commits_paginated = @project.commits.order("committed_at desc").page params[:page]
 
     respond_to do |format|
       format.html # show.html.erb
