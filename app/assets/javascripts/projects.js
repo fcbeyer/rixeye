@@ -31,6 +31,6 @@ function searchRevisionsComplete(data){
 		notification.show();
 		setTimeout(function(){
 			notification.cancel();
-		}, 5000);
+		}, 4000);
 	}
 }

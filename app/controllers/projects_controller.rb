@@ -16,19 +16,19 @@ class ProjectsController < ApplicationController
   	begin
   		response = system "svn log --verbose --username build --password build #{project.url_path} -r#{rev_from}:#{rev_to} --xml > #{log_file}"
   		doc = Nokogiri::XML(File.open(log_file))
-  		if !doc.css('log logentry').empty?
-		  	doc.css('log logentry').each do |entry|
-		  		msg = parse_message(entry.css('msg').text)
+  		if !doc.xpath('//log/logentry').empty?
+		  	doc.xpath('//log/logentry').each do |entry|
+		  		msg = parse_message(entry.xpath('//msg').text)
 		  		cur_revision = Commit.new
 		  		cur_revision.project_id = project.id
 		  		cur_revision.issue = msg['issue']
 		  		temp = entry.attribute('revision')
 		  		cur_revision.revision_number = temp.to_s
-		  		cur_revision.committed_at = Time.iso8601(entry.css('date').text)
-		  		cur_revision.author = entry.css('author').text
+		  		cur_revision.committed_at = Time.iso8601(entry.xpath('//date').text)
+		  		cur_revision.author = entry.xpath('//author').text
 		  		cur_revision.message = msg['complete']
 		  		cur_revision.save
-		  		entry.css('paths path').each do |path|
+		  		entry.xpath('//paths/path').each do |path|
 		  			cur_path = Path.new
 		  			cur_path.commits_id = cur_revision.id
 		  			temp = path.attribute('kind')
@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
 		  	end
 		  	
 		  	#update project.last_revision to the last one we found just now
-		  	temp = doc.css('log logentry').last.attribute('revision')
+		  	temp = doc.xpath('//log/logentry').last.attribute('revision')
 		  	project.last_revision = temp.to_s
 		  else
 		  	#nothing new was found
