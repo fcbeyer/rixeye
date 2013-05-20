@@ -1,3 +1,5 @@
+require 'java'
+
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
@@ -47,8 +49,8 @@ class ProjectsController < ApplicationController
 		  	#nothing new was found
 		  	have_new_revision_data = false
 		  end
-  	rescue
-  		STDERR.puts "AHHH THIS IS AWFUL! #{$!}"
+  	rescue => ex
+  		ex.printStackTrace
 			problem = true
   	end
 	  
