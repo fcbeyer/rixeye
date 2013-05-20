@@ -80,6 +80,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     
     @commits_by_day = @project.commits.order("committed_at desc").group_by { |commit| commit.committed_at.to_date}
+    puts "@commits_by_day_first: " + @commits_by_day.first.to_s
     
     @commits_paginated = @project.commits.order("committed_at desc").page params[:page]
 
