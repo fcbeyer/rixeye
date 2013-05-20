@@ -1,3 +1,4 @@
+<%= paginate @commits_paginated %>
 
 <table id="projectRevions" class="table table-bordered table-hover ">
 	<thead>
@@ -12,7 +13,7 @@
 	<tbody>
 		<% @commits_by_day.each do |date, commits_for_one_day| %>
 			<tr>
-				<td colspan="5"><h5 align="center"><%= date %></h5></td>
+				<td colspan="5" ><h5 align="center" ><%= date %></h5></td>
 			</tr>
 			<% commits_for_one_day.each do |commit| %>
 			  <tr>

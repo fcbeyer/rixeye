@@ -79,9 +79,9 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     
-    @commits_by_day = @project.commits.order("committed_at desc").group_by { |commit| commit.committed_at.to_date}
+    @commits_paginated = @project.commits.order("committed_at desc").page(params[:page]).per(35)
     
-    @commits_paginated = @project.commits.order("committed_at desc").page params[:page]
+    @commits_by_day = @commits_paginated.group_by { |commit| commit.committed_at.to_date}
 
     respond_to do |format|
       format.html # show.html.erb
