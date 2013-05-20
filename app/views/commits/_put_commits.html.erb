@@ -1,3 +1,6 @@
+
+<%= paginate @commits_paginated %>
+
 <table id="projectRevions" class="table table-bordered table-hover ">
   <tr>
   	<th>Author</th>
@@ -7,7 +10,7 @@
     <th>Time Since Commit</th>
   </tr>
 
-<% @commits.each do |commit| %>
+<% @commits_paginated.each do |commit| %>
   <tr>
     <td><%= commit.author %></td>
     <td><%= create_fisheye_link(commit,@project) %></td>

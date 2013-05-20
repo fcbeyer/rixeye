@@ -4,7 +4,7 @@ class CommitsController < ApplicationController
   
   before_filter :get_project
   
-  def get_suite
+  def get_project
     @current_project = Project.find(params[:project_id])
   end
   
