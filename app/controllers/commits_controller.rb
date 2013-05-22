@@ -10,6 +10,10 @@ class CommitsController < ApplicationController
   
   def index
     @commits = Commit.all
+    
+    @commits_paginated = @current_project.commits.order("committed_at desc").page(params[:page]).per(35)
+    
+    @commits_by_day = @commits_paginated.group_by { |commit| commit.committed_at.to_date}
 
     respond_to do |format|
       format.html # index.html.erb

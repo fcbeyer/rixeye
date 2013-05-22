@@ -78,10 +78,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    
-    @commits_paginated = @project.commits.order("committed_at desc").page(params[:page]).per(35)
-    
-    @commits_by_day = @commits_paginated.group_by { |commit| commit.committed_at.to_date}
 
     respond_to do |format|
       format.html # show.html.erb
