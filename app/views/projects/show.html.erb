@@ -25,8 +25,29 @@
   </tr>
 </table>
 
+<div id="short_cuts">
+	<h5>Jump To</h5>
+	<ol>
+		<li><%= link_to @project.display_name + " commits", project_commits_path(@project.id) %></li>
+		<li><a href="#commits_by_day_chart">Commits By Day Chart</a></li>
+		<li><a href="#commits_by_week_chart">Commits By Week Chart</a></li>
+		<li><a href="#commits_by_author_chart">Commits By Author Chart</a></li>
+		<li><a href="#commits_by_issue_chart">Commits By Issue Chart</a></li>
+	</ol>
+</div>
 
-<%= render 'commits/put_commits' %>
+<h6 align="center" >Commits By Day</h6>
+<%= line_chart @project.commits.group_by_day(:committed_at).count, :id => "commits_by_day_chart" %>
+
+
+<h6 align="center" >Commits By Week</h6>
+<%= line_chart @project.commits.group_by_week(:committed_at).count, :id => "commits_by_week_chart" %>
+
+<h6 align="center" >Commits By Author</h6>
+<%= column_chart @project.commits.group("author").count, :id => "commits_by_author_chart" %>
+
+<h6 align="center" >Commits By Issue</h6>
+<%= column_chart @project.commits.group("issue").count, :id => "commits_by_issue_chart", :min => 0, :max => 20 %>
 
 <br />
 
