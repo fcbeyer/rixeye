@@ -7,6 +7,7 @@
 		<th>Url Path</th>
 		<th>Base Revision</th>
 		<th>Last Revision</th>
+		<th>Commits</th>
 		<th>Last Search</th>
 		<th>Active</th>
 		<th></th>
@@ -21,6 +22,7 @@
     <td><%= project.url_path %></td>
     <td><%= project.base_revision %></td>
     <td><%= project.last_revision %></td>
+    <td><%= project.commits.count %></td>
     <td><%= display_time(project.last_run_time) %></td>
     <td><%= active_flag_display(project.active) %></td>
     <td><%= link_to 'Show', project %></td>
