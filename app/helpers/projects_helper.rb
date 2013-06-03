@@ -14,5 +14,15 @@ module ProjectsHelper
 			return time_ago_in_words(time) + " ago"
 		end
 	end
+	
+	def total_dev_issues(project)
+		dev_issues = project.commits.where("issue LIKE ?","DEV-%")
+		total = 0
+		grouped = dev_issues.group_by { |commit| commit.issue }
+		grouped.each do |issue, grouping|
+			total += 1
+		end
+		return total
+	end
 
 end

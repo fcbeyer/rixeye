@@ -8,6 +8,7 @@
     <th>Base Revision</th>
     <th>Last Revision</th>
     <th>Commits</th>
+    <th>Jira Issues</th>
     <th>Last Search</th>
     <th>Active</th>
     <th></th>
@@ -20,6 +21,7 @@
     <td><%= @project.base_revision %></td>
     <td><%= @project.last_revision %></td>
     <td><%= @project.commits.count %></td>
+    <td><%= total_dev_issues(@project) %></td>
     <td><%= display_time(@project.last_run_time) %></td>
     <td><%= active_flag_display(@project.active) %></td>
     <td><%= link_to 'Edit', edit_project_path(@project) %></td>
