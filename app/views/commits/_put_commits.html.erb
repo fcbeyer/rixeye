@@ -7,13 +7,14 @@
 	    <th>Revision</th>
 	    <th>Jira Link</th>
 	    <th>Message</th>
+	    <th>Files</th>
 	    <th>Time Since Commit</th>
 	  </tr>
   	</thead>
 	<tbody>
 		<% @commits_by_day.each do |date, commits_for_one_day| %>
 			<tr>
-				<td colspan="5" ><h5 align="center" ><%= date.strftime('%A') + " " + date.to_formatted_s(:long_ordinal) %></h5></td>
+				<td colspan="6" ><h5 align="center" ><%= date.strftime('%A') + " " + date.to_formatted_s(:long_ordinal) %></h5></td>
 			</tr>
 			<% commits_for_one_day.each do |commit| %>
 			  <tr>
@@ -21,6 +22,7 @@
 			    <td><%= create_fisheye_link(commit,@current_project) %></td>
 			    <td><%= create_jira_link(commit) %></td>
 			    <td><%= commit.message %></td>
+			    <td><%= find_paths(commit) + " files" %></td>
 			    <td><%= time_ago_in_words(commit.committed_at) %></td>
 			  </tr>
 			  <% end %>
