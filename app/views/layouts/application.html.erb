@@ -49,13 +49,19 @@
   			</li>
 		</ul>
 		<li class="divider-vertical"></li>
-		<li><a href="#settings_modal" data-toggle="modal">Settings <i class="icon-wrench"></i></a></li>
-		<li class="divider-vertical"></li>
 		<li><button <%= display_button("small","info") %> onclick="askPermission()" type="button">Enable Notifications</button></td></li>
 		<li class="divider-vertical"></li>
-      </ul>
+	  </ul>
+	  <ul class="nav pull-right">
+		<li><a href="#settings_modal" data-toggle="modal"><i class="icon-wrench" align="right"></i></a></li>
+	  </ul>
     </div>
   </div>
+</div>
+
+<!-- Modal information -->
+<div id="settings_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<%= render 'layouts/settings_form' %>
 </div>
 
 <%= yield %>
