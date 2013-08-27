@@ -1,4 +1,4 @@
-Projectactivity::Application.routes.draw do
+Rixeye::Application.routes.draw do
 
 
   resources :projects do

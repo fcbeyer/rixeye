@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Projectactivity::Application.load_tasks
+Rixeye::Application.load_tasks

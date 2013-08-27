@@ -1,0 +1,28 @@
+development:
+  svn_user: build
+  svn_password: build
+  git_user: build
+  git_password: build
+  jira_url: https://jira/browse/
+  jira_project_list: ['DEV','AUTO','INSTALL']
+  fisheye_url: https://jira-t:8443/fisheye/changelog/
+
+
+test:
+  svn_user: build
+  svn_password: build
+  git_user: build
+  git_password: build
+  jira_url: https://jira-t/browse/
+  jira_project_list: ['DEV','AUTO','INSTALL']
+  fisheye_url: https://jira-t:8443/fisheye/changelog/
+
+
+production:
+  svn_user: build
+  svn_password: build
+  git_user: build
+  git_password: build
+  jira_url: https://jira/browse/
+  jira_project_list: ['DEV','AUTO','INSTALL']
+  fisheye_url: https://jira-t:8443/fisheye/changelog/
