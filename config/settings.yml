@@ -1,28 +1,28 @@
 development:
-  svn_user: build
-  svn_password: build
-  git_user: build
-  git_password: build
-  jira_url: https://jira/browse/
-  jira_project_list: ['DEV','AUTO','INSTALL']
-  fisheye_url: https://jira-t:8443/fisheye/changelog/
+  SVN_User: build
+  SVN_Password: build
+  Git_User: build
+  Git_Password: build
+  Jira_URL: https://jira/browse/
+  Jira_Project_List: ['DEV','AUTO','INSTALL']
+  Fisheye_URL: https://jira-t:8443/fisheye/changelog/
 
 
 test:
-  svn_user: build
-  svn_password: build
-  git_user: build
-  git_password: build
-  jira_url: https://jira-t/browse/
-  jira_project_list: ['DEV','AUTO','INSTALL']
-  fisheye_url: https://jira-t:8443/fisheye/changelog/
+  SVN_User: build
+  SVN_Password: build
+  Git_User: build
+  Git_Password: build
+  Jira_URL: https://jira-t/browse/
+  Jira_Project_List: ['DEV','AUTO','INSTALL']
+  Fisheye_URL: https://jira-t:8443/fisheye/changelog/
 
 
 production:
-  svn_user: build
-  svn_password: build
-  git_user: build
-  git_password: build
-  jira_url: https://jira/browse/
-  jira_project_list: ['DEV','AUTO','INSTALL']
-  fisheye_url: https://jira-t:8443/fisheye/changelog/
+  SVN_User: build
+  SVN_Password: build
+  Git_User: build
+  Git_Password: build
+  Jira_URL: https://jira/browse/
+  Jira_Project_List: ['DEV','AUTO','INSTALL']
+  Fisheye_URL: https://jira-t:8443/fisheye/changelog/

@@ -4,50 +4,11 @@
 </div>
 <div class="modal-body">
 	<form class="form-horizontal" id="settings_data">
-	  <div class="control-group">
-	    <label class="control-label" for="svn_user">SVN User: </label>
-	    <div class="controls">
-	      <%= text_field_tag(:svn_user,Rixeye::Application.config.svn_user)%>
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="svn_password">SVN Password: </label>
-	    <div class="controls">
-	      <%= text_field_tag(:svn_password,Rixeye::Application.config.svn_password)%>
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="git_user">Git User: </label>
-	    <div class="controls">
-	      <%= text_field_tag(:git_user,Rixeye::Application.config.git_user)%>
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="git_password">Git Password: </label>
-	    <div class="controls">
-	      <%= text_field_tag(:git_password,Rixeye::Application.config.git_password)%>
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="jira_url">Jira URL: </label>
-	    <div class="controls">
-	      <%= text_field_tag(:jira_url,Rixeye::Application.config.jira_url)%>
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="jira_project_list">Jira Project List: </label>
-	    <div class="controls">
-	      <%= text_field_tag(:jira_project_list,Rixeye::Application.config.jira_project_list)%>
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="fisheye_url">Fisheye URL: </label>
-	    <div class="controls">
-	      <%= text_field_tag(:fisheye_url,Rixeye::Application.config.fisheye_url)%>
-	    </div>
-	  </div>
+	  <% Rixeye::Application.config.rixeye_settings.keys.each do |key| %>
+	  	<%= create_settings_modal(key) %>
+	  <% end %>
 	</form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-large btn-block btn-success" data-dismiss="modal" onclick="getData('Steps')" type="button">Update Settings</button>
+  <button class="btn btn-large btn-block btn-success" data-dismiss="modal" type="button">Dismiss</button>
 </div>
