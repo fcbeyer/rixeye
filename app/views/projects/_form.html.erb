@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label "Branch Name (must be the same as the Fisheye repo name)" %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
@@ -22,6 +22,10 @@
   <div class="field">
     <%= f.label :url_path %><br />
     <%= f.text_field :url_path %>
+  </div>
+  <div class="field">
+    <%= f.label "SCM (SVN or Git)" %><br />
+    <%= f.text_field :scm_type %>
   </div>
   <div class="field">
     <%= f.label :base_revision %><br />
