@@ -1,6 +1,13 @@
 class WhitelistsController < ApplicationController
   # GET /whitelists
   # GET /whitelists.json
+  
+  before_filter :get_project
+  
+  def get_project
+    @current_project = Project.find(params[:project_id])
+  end
+  
   def index
     @whitelists = Whitelist.all
 
@@ -41,10 +48,11 @@ class WhitelistsController < ApplicationController
   # POST /whitelists.json
   def create
     @whitelist = Whitelist.new(params[:whitelist])
+    @whitelist.project_id = params[:project_id]
 
     respond_to do |format|
       if @whitelist.save
-        format.html { redirect_to @whitelist, notice: 'Whitelist was successfully created.' }
+        format.html { redirect_to [@current_project,@whitelist], notice: 'Whitelist was successfully created.' }
         format.json { render json: @whitelist, status: :created, location: @whitelist }
       else
         format.html { render action: "new" }
@@ -60,7 +68,7 @@ class WhitelistsController < ApplicationController
 
     respond_to do |format|
       if @whitelist.update_attributes(params[:whitelist])
-        format.html { redirect_to @whitelist, notice: 'Whitelist was successfully updated.' }
+        format.html { redirect_to [@current_project,@whitelist], notice: 'Whitelist was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +84,7 @@ class WhitelistsController < ApplicationController
     @whitelist.destroy
 
     respond_to do |format|
-      format.html { redirect_to whitelists_url }
+      format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
   end

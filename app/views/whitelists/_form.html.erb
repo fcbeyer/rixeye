@@ -1,4 +1,4 @@
-<%= form_for(@whitelist) do |f| %>
+<%= form_for([@current_prject,@whitelist], :url => project_whitelist_path(@current_project,)) do |f| %>
   <% if @whitelist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@whitelist.errors.count, "error") %> prohibited this whitelist from being saved:</h2>
@@ -12,16 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :string %><br />
-    <%= f.text_field :string %>
-  </div>
-  <div class="field">
-    <%= f.label :string %><br />
-    <%= f.text_field :string %>
-  </div>
-  <div class="field">
-    <%= f.label :integer %><br />
-    <%= f.text_field :integer %>
+    <%= f.label :branch_name %><br />
+    <%= f.text_field :branch_name %>
   </div>
   <div class="actions">
     <%= f.submit %>
