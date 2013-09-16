@@ -1,7 +1,7 @@
 Rixeye::Application.routes.draw do
 
   resources :projects do
-  	resources :whitelist do
+  	resource :whitelist do
   		resources :items
   	end
   	resources :commits do
