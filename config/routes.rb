@@ -1,7 +1,9 @@
 Rixeye::Application.routes.draw do
 
-
   resources :projects do
+  	resources :whitelists do
+  		resources :items
+  	end
   	resources :commits do
   		resources :paths
   	end

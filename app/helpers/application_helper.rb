@@ -36,7 +36,7 @@ module ApplicationHelper
  		content_tag :div, :class => "control-group" do
  			label_tag('#{key}', parse_key(key)+":", :class => "control-label") +
  			content_tag(:div, :class => "controls") do
- 				text_field_tag :svn_user,Rixeye::Application.config.rixeye_settings[key],disabled: true
+ 				text_field_tag '#{key}',Rixeye::Application.config.rixeye_settings[key],disabled: true
  			end
  		end
  	end
