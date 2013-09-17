@@ -6,5 +6,6 @@ class ApplicationController < ActionController::Base
 	def get_nav_bar_data
 		@project_list = Project.active
 		@whitelist_list = Whitelist.all
+		@whitelist_list.sort! { |a,b| a.project_id <=> b.project_id}
 	end
 end
