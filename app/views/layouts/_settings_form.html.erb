@@ -3,11 +3,20 @@
     <h3 id="settings_modal_header" align="center">Settings</h3>
 </div>
 <div class="modal-body">
-	<form class="form-horizontal" id="settings_data">
-	  <% Rixeye::Application.config.rixeye_settings.keys.each do |key| %>
-	  	<%= create_settings_modal(key) %>
-	  <% end %>
-	</form>
+	<table class="table table-bordered table-condensed table-hover">
+	<thead>
+	  <tr>
+		<th>Property</th>
+		<th>Value</th>
+	  </tr>
+	</thead>
+	<% Rixeye::Application.config.rixeye_settings.keys.each do |key| %>
+	  <tr>
+	    <td><%= parse_key(key) %></td>
+	    <td><%= Rixeye::Application.config.rixeye_settings[key] %></td>
+	  </tr>
+	<% end %>
+	</table>
 </div>
 <div class="modal-footer">
   <button class="btn btn-large btn-block btn-success" data-dismiss="modal" type="button">Dismiss</button>
