@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  whitelist_id: 1
+  issue: MyString
+  comment: MyText
+
+two:
+  whitelist_id: 1
+  issue: MyString
+  comment: MyText
