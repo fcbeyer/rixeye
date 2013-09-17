@@ -26,3 +26,8 @@ input[type="number"],
 .uneditable-input {
   height: 25px;
 }
+
+.shruti_style{
+	text-align: center;
+	color: orangered
+}
