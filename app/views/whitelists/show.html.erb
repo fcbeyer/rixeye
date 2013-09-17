@@ -1,50 +1,31 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Branch Name:</b>
-  <%= @whitelist.branch_name %>
-</p>
-
-<p>
-  <b>Num Items:</b>
-  <%= @whitelist.num_items %>
-</p>
-
-<p>
-  <b>Created At:</b>
-  <%= @whitelist.created_at %>
-</p>
-
-<p>
-  <b>Updated At:</b>
-  <%= @whitelist.updated_at %>
-</p>
 <br/> <br/>
-
-<h4 style="color: orangered">Item List</h4>
-<table width="100%" border="1">
+<div>
+<div style="text-align: center">
+<h3 style="color: orangered"><%= @whitelist.branch_name %></h3>
+</div>
+<table width="100%" border="1" style="text-align: left">
   <tr>
-	<th>Whitelist</th>
 	<th>Issue</th>
 	<th>Comment</th>
 	<th></th>
 	<th></th>
-	<th></th>
   </tr>
+
   <% @whitelist.items.each do |item| %>
 	  <tr>
-		<td><%= item.whitelist_id %></td>
 		<td><%= item.issue %></td>
 		<td><%= item.comment %></td>
-		<td><%= link_to 'Show', project_whitelist_item_path(@current_project,item) %></td>
 		<td><%= link_to 'Edit', edit_project_whitelist_item_path(@current_project,item) %></td>
 		<td><%= link_to 'Destroy', project_whitelist_item_path(@current_project,item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </tr>
   <% end %>
-
 </table>
+</div>
+
 <br/> <br/>
-<h5><%= link_to 'New Item', new_project_whitelist_item_path %></h5>
+<%= button_to 'Add New Item', new_project_whitelist_item_path, :method => :get %>
 <br/>
 <%= link_to 'Back', projects_path %>
