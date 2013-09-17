@@ -47,12 +47,12 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(params[:item])
+  @item = Item.new(params[:item])
 	@item.whitelist_id = @whitelist.id
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to project_whitelist_path(@whitelist.project_id), notice: 'Item was successfully created.' }
         format.json { render json: @item, status: :created, location: @item }
       else
         format.html { render action: "new" }
@@ -84,7 +84,7 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to items_url }
+      format.html { redirect_to project_whitelist_path(@whitelist.project_id) }
       format.json { head :no_content }
     end
   end

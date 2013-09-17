@@ -41,7 +41,7 @@ class WhitelistsController < ApplicationController
 
   # GET /whitelists/1/edit
   def edit
-    @whitelist = Whitelist.find(params[:id])
+    @whitelist = @current_project.whitelist
   end
 
   # POST /whitelists
