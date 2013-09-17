@@ -1,6 +1,14 @@
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
+
+  before_filter :get_project
+
+  def get_project
+	  @project =  Project.find(params[:project_id])
+	  @whitelist = @project.whitelist
+  end
+
   def index
     @items = Item.all
 
@@ -25,7 +33,6 @@ class ItemsController < ApplicationController
   # GET /items/new.json
   def new
     @item = Item.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @item }
@@ -41,6 +48,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(params[:item])
+	@item.whitelist_id = @whitelist.id
 
     respond_to do |format|
       if @item.save
