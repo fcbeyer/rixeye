@@ -108,6 +108,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+      	Whitelist.create_from_project(@project.id,@project.display_name)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
