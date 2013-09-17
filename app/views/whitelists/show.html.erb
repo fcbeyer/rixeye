@@ -1,20 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>String:</b>
-  <%= @whitelist.string %>
+  <b>Branch Name:</b>
+  <%= @whitelist.branch_name %>
 </p>
 
 <p>
-  <b>String:</b>
-  <%= @whitelist.string %>
+  <b>Num Items:</b>
+  <%= @whitelist.num_items %>
 </p>
 
 <p>
-  <b>Integer:</b>
-  <%= @whitelist.integer %>
+  <b>Created At:</b>
+  <%= @whitelist.created_at %>
 </p>
 
+<p>
+  <b>Updated At:</b>
+  <%= @whitelist.updated_at %>
+</p>
 
-<%= link_to 'Edit', edit_projects_whitelist_path([@current_project,@whitelist]) %> |
 <%= link_to 'Back', projects_path %>

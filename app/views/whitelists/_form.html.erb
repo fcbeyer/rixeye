@@ -1,4 +1,4 @@
-<%= form_for([@current_prject,@whitelist], :url => project_whitelist_path(@current_project,)) do |f| %>
+<%= form_for([@current_prject,@whitelist], :url => project_whitelist_path(@current_project)) do |f| %>
   <% if @whitelist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@whitelist.errors.count, "error") %> prohibited this whitelist from being saved:</h2>

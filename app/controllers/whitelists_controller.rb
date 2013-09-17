@@ -20,7 +20,7 @@ class WhitelistsController < ApplicationController
   # GET /whitelists/1
   # GET /whitelists/1.json
   def show
-    @whitelist = Whitelist.find(params[:id])
+    @whitelist = @current_project.whitelist
 
     respond_to do |format|
       format.html # show.html.erb
