@@ -11,6 +11,7 @@
 	  <tr>
 		<th>Issue</th>
 		<th>Comment</th>
+		<th>Reported by</th>
 		<th></th>
 		<th></th>
 	  </tr>
@@ -20,6 +21,7 @@
 	  <tr>
 		<td><%= item.issue %></td>
 		<td><%= item.comment %></td>
+		<td><%= item.reporter %></td>
 		<td><%= link_to 'Edit', edit_project_whitelist_item_path(@current_project,item) %></td>
 		<td><%= link_to 'Delete', project_whitelist_item_path(@current_project,item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </tr>
