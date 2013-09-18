@@ -22,8 +22,8 @@
 		<td><%= item.issue %></td>
 		<td><%= item.comment %></td>
 		<td><%= item.reporter %></td>
-		<td><%= link_to 'Edit', edit_project_whitelist_item_path(@current_project,item) %></td>
-		<td><%= link_to 'Delete', project_whitelist_item_path(@current_project,item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to 'Edit', edit_project_whitelist_item_path(@current_project,item), :class => "btn btn-small" %></td>
+		<td><%= link_to 'Delete', project_whitelist_item_path(@current_project,item), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %></td>
 	  </tr>
   <% end %>
 </table>

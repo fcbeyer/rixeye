@@ -24,8 +24,8 @@
     <td><%= total_dev_issues(@project) %></td>
     <td><%= display_time(@project.last_run_time) %></td>
     <td><%= active_flag_display(@project.active) %></td>
-    <td><%= link_to 'Edit', edit_project_path(@project) %></td>
-    <td><%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_project_path(@project), :class => "btn btn-small" %></td>
+    <td><%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small" %></td>
   </tr>
 </table>
 
