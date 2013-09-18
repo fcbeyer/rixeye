@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   belongs_to :whitelist
   
   validate :verify_project_key, :verify_issue_uniqueness
+  validates :reporter, :presence => {:message => 'must have a value'}
   
   def verify_project_key
   	match_found = false
