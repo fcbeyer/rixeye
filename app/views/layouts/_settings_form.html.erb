@@ -1,0 +1,23 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="settings_modal_header" class="fancy-header">Settings</h3>
+</div>
+<div class="modal-body">
+	<table class="table table-bordered table-condensed table-hover">
+	<thead>
+	  <tr>
+		<th>Property</th>
+		<th>Value</th>
+	  </tr>
+	</thead>
+	<% Rixeye::Application.config.rixeye_settings.keys.each do |key| %>
+	  <tr>
+	    <td><%= parse_key(key) %></td>
+	    <td><%= Rixeye::Application.config.rixeye_settings[key] %></td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-large btn-block btn-success" data-dismiss="modal" type="button">Dismiss</button>
+</div>

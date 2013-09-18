@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   	have_new_revision_data = true
   	
   	begin
-  		response = system "svn log --verbose --username build --password build #{project.url_path} -r#{rev_from}:#{rev_to} --xml > #{log_file}"
+  		response = system "svn log --verbose --username #{Rixeye::Application.config.rixeye_settings['SVN_User']} --password #{Rixeye::Application.config.rixeye_settings['SVN_Password']} #{project.url_path} -r#{rev_from}:#{rev_to} --xml > #{log_file}"
   		doc = Nokogiri::XML(File.open(log_file))
   		if !doc.xpath('/log/logentry').empty?
 		  	doc.xpath('/log/logentry').each do |entry|
@@ -110,6 +110,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+      	Whitelist.create_from_project(@project.id,@project.display_name)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else

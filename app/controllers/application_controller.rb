@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :get_project_list
+  before_filter :get_nav_bar_data
 	
-	def get_project_list
+	def get_nav_bar_data
 		@project_list = Project.active
-		@jira_url = "https://jira/browse/"
-		@fisheye_url = "https://jira-t:8443/fisheye/changelog/"
+		@whitelist_list = Whitelist.all
+		@whitelist_list.sort! { |a,b| a.project_id <=> b.project_id}
 	end
 end

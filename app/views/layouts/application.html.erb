@@ -32,7 +32,21 @@
     				    <li><%= link_to project.display_name, project %></li>
      				<% end %> 
     			</ul>  
-  			</li>  
+  			</li>
+  			<li class="divider-vertical"></li> 
+  			<li class="dropdown">
+    			<a href="#"  
+          			class="dropdown-toggle"  
+          			data-toggle="dropdown">  
+          			Whitelists
+          			<b class="caret"></b>  
+    			</a>  
+    			<ul class="dropdown-menu">
+    				<% @whitelist_list.each do |whitelist| %>
+    				    <li><%= link_to whitelist.branch_name, project_whitelist_path(whitelist.project_id) %></li>
+     				<% end %> 
+    			</ul>  
+  			</li> 
         	<li class="divider-vertical"></li> 
   			<li class="dropdown">
     			<a href="#"  
@@ -43,17 +57,25 @@
     			</a>  
     			<ul class="dropdown-menu">
     				<% @project_list.each do |project| %>
-    				    <li><button <%= display_button("small","primary") %> onclick="searchRevisions('<%= get_find_revisions_url(project) %>')" type="button"><%= project.display_name %></button></li>
+    				    <li><button <%= display_button("small","success") %> onclick="searchRevisions('<%= get_find_revisions_url(project) %>')" type="button"><%= project.display_name %></button></li>
      				<% end %> 
     			</ul>  
   			</li>
 		</ul>
 		<li class="divider-vertical"></li>
-		<li><button <%= display_button("small","info") %> onclick="askPermission()" type="button">Enable Notifications</button></td></li>
+		<li><button <%= display_button("small","info") %> onclick="askPermission()" type="button">Enable Notifications</button></li>
 		<li class="divider-vertical"></li>
-      </ul>
+	  </ul>
+	  <ul class="nav pull-right">
+		<li><a href="#settings_modal" data-toggle="modal"><i class="icon-wrench" align="right"></i></a></li>
+	  </ul>
     </div>
   </div>
+</div>
+
+<!-- Modal information -->
+<div id="settings_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<%= render 'layouts/settings_form' %>
 </div>
 
 <%= yield %>

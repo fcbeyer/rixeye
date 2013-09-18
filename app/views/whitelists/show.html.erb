@@ -1,0 +1,35 @@
+
+<p id="notice"><%= notice %></p>
+
+<br/> <br/>
+<div>
+<div style="text-align: center">
+<h3 class="fancy-header"><%= @whitelist.branch_name %></h3>
+</div>
+<table class="table table-bordered table-condensed table-hover">
+  <thead>
+	  <tr>
+		<th>Issue</th>
+		<th>Comment</th>
+		<th>Reported by</th>
+		<th></th>
+		<th></th>
+	  </tr>
+  </thead>
+
+  <% @whitelist.items.each do |item| %>
+	  <tr>
+		<td><%= item.issue %></td>
+		<td><%= item.comment %></td>
+		<td><%= item.reporter %></td>
+		<td><%= link_to 'Edit', edit_project_whitelist_item_path(@current_project,item), :class => "btn btn-small" %></td>
+		<td><%= link_to 'Delete', project_whitelist_item_path(@current_project,item), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %></td>
+	  </tr>
+  <% end %>
+</table>
+</div>
+
+<br/> <br/>
+<%= button_to 'Add New Item', new_project_whitelist_item_path, :method => :get, :class => "btn" %>
+<br/>
+<%= link_to 'Back', projects_path %>

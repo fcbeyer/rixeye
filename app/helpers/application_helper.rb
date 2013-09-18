@@ -31,5 +31,19 @@ module ApplicationHelper
  			return raw("class=\"btn btn-#{size} btn-#{color}\"")
  		end
  	end
-	
+ 	
+ 	def create_settings_modal(key)
+ 		content_tag :div, :class => "control-group" do
+ 			label_tag('#{key}', parse_key(key)+":", :class => "control-label") +
+ 			content_tag(:div, :class => "controls") do
+ 				text_field_tag '#{key}',Rixeye::Application.config.rixeye_settings[key],disabled: true
+ 			end
+ 		end
+ 	end
+ 	
+ 	def parse_key(key)
+ 		output = key.gsub("_"," ")
+ 		return output
+ 	end
+ 		
 end

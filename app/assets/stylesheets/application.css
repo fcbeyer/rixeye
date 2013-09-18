@@ -26,3 +26,8 @@ input[type="number"],
 .uneditable-input {
   height: 25px;
 }
+
+.fancy-header{
+	text-align: center;
+	color: orangered
+}

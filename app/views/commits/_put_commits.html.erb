@@ -14,7 +14,7 @@
 	<tbody>
 		<% @commits_by_day.each do |date, commits_for_one_day| %>
 			<tr>
-				<td colspan="6" ><h5 align="center" ><%= date.strftime('%A') + " " + date.to_formatted_s(:long_ordinal) %></h5></td>
+				<td colspan="6" ><h5 class="fancy-header" ><%= date.strftime('%A') + " " + date.to_formatted_s(:long_ordinal) %></h5></td>
 			</tr>
 			<% commits_for_one_day.each do |commit| %>
 			  <tr>
@@ -29,3 +29,5 @@
 			<% end %>
 	</tbody>
 </table>
+
+<%= paginate @commits_paginated %>

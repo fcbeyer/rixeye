@@ -1,0 +1,21 @@
+<h6>Item Created</h6>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Whitelist:</b>
+  <%= @item.whitelist_id %>
+</p>
+
+<p>
+  <b>Issue:</b>
+  <%= @item.issue %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @item.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_whitelist_item_path(@project,@item) %> |
+<%= link_to 'Back', project_whitelist_path(@whitelist.project_id) %>

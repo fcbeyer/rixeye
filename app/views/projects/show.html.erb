@@ -24,8 +24,8 @@
     <td><%= total_dev_issues(@project) %></td>
     <td><%= display_time(@project.last_run_time) %></td>
     <td><%= active_flag_display(@project.active) %></td>
-    <td><%= link_to 'Edit', edit_project_path(@project) %></td>
-    <td><%= link_to 'Destroy', @project, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_project_path(@project), :class => "btn btn-small" %></td>
+    <td><%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small" %></td>
   </tr>
 </table>
 
@@ -33,6 +33,7 @@
 	<h5>Jump To</h5>
 	<ol>
 		<li><%= link_to @project.display_name + " commits", project_commits_path(@project.id) %></li>
+		<li><%= link_to @project.display_name + " Whitelist", project_whitelist_path(@project.id) %></li>
 		<li><a href="#commits_by_day_chart">Commits By Day Chart</a></li>
 		<li><a href="#commits_by_week_chart">Commits By Week Chart</a></li>
 		<li><a href="#commits_by_author_chart">Commits By Author Chart</a></li>

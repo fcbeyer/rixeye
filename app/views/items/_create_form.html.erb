@@ -1,0 +1,30 @@
+	<%= form_for([@project,@item], :url => project_whitelist_items_path(@project,@item)) do |f| %>
+	<% if @item.errors.any? %>
+	<div id="error_explanation">
+	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+	<ul>
+	<% @item.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+	</ul>
+	</div>
+	<% end %>
+
+
+	<div class="field">
+	<%= f.label :issue %><br />
+	<%= f.text_field :issue %>
+	</div>
+	<div class="field">
+	<%= f.label :comment %><br />
+	<%= f.text_area :comment %>
+	</div>
+	<div class="field">
+	<%= f.label :reported_by %><br />
+	<%= f.text_field :reporter %>
+	</div>
+	<div class="actions">
+	<%= f.submit :class => "btn" %>
+	</div>
+	<% end %>
