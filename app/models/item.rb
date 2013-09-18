@@ -21,7 +21,7 @@ class Item < ActiveRecord::Base
   	#for now, make sure this Jira Issue does not already exist on the whitelist (it really should be at all, but that is a simple change later)
   	whitelist = Whitelist.find(self.whitelist_id)
   	whitelist.items.each do |cur_item|
-  		if cur_item.eql?(self.issue)
+  		if (cur_item.issue).eql?(self.issue)
   			errors[:base] << "This Jira issue is already present on the whitelist!"
   			return false
   		end
