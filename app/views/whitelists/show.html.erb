@@ -6,7 +6,7 @@
 <div style="text-align: center">
 <h3 class="header-table"><%= @whitelist.branch_name %></h3>
 </div>
-<table width="100%" border="1" style="text-align: left">
+<table class="table table-bordered table-condensed table-hover">
   <tr>
 	<th>Issue</th>
 	<th>Comment</th>
@@ -26,6 +26,6 @@
 </div>
 
 <br/> <br/>
-<%= button_to 'Add New Item', new_project_whitelist_item_path, :method => :get %>
+<%= button_to 'Add New Item', new_project_whitelist_item_path, :method => :get, :class => "btn" %>
 <br/>
 <%= link_to 'Back', projects_path %>
