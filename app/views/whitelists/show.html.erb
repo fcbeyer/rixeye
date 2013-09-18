@@ -7,12 +7,14 @@
 <h3 class="header-table"><%= @whitelist.branch_name %></h3>
 </div>
 <table class="table table-bordered table-condensed table-hover">
-  <tr>
-	<th>Issue</th>
-	<th>Comment</th>
-	<th></th>
-	<th></th>
-  </tr>
+  <thead>
+	  <tr>
+		<th>Issue</th>
+		<th>Comment</th>
+		<th></th>
+		<th></th>
+	  </tr>
+  </thead>
 
   <% @whitelist.items.each do |item| %>
 	  <tr>

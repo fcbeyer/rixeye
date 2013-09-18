@@ -33,6 +33,7 @@
 	<h5>Jump To</h5>
 	<ol>
 		<li><%= link_to @project.display_name + " commits", project_commits_path(@project.id) %></li>
+		<li><%= link_to @project.display_name + " Whitelist", project_whitelist_path(@project.id) %></li>
 		<li><a href="#commits_by_day_chart">Commits By Day Chart</a></li>
 		<li><a href="#commits_by_week_chart">Commits By Week Chart</a></li>
 		<li><a href="#commits_by_author_chart">Commits By Author Chart</a></li>
