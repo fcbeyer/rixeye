@@ -1,4 +1,3 @@
-
 <p id="notice"><%= notice %></p>
 
 <br/> <br/>
@@ -9,19 +8,19 @@
 <table class="table table-bordered table-condensed table-hover">
   <thead>
 	  <tr>
-		<th>Issue</th>
+		<th><%= sortable "issue" %></th>
 		<th>Comment</th>
-		<th>Reported by</th>
+		<th><%= sortable "reporter" %></th>
 		<th></th>
 		<th></th>
 	  </tr>
   </thead>
 
-  <% @whitelist.items.each do |item| %>
+  <% @whitelist.items.order(sort_column + ' ' + sort_direction).each do |item| %>
 	  <tr>
-		<td><%= item.issue %></td>
+		<td><u><%= create_jira_link(item) %></u></td>
 		<td><%= item.comment %></td>
-		<td><%= item.reporter %></td>
+		<td><%= item.reporter%></td>
 		<td><%= link_to 'Edit', edit_project_whitelist_item_path(@current_project,item), :class => "btn btn-small" %></td>
 		<td><%= link_to 'Delete', project_whitelist_item_path(@current_project,item), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %></td>
 	  </tr>

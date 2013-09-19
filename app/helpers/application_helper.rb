@@ -44,6 +44,21 @@ module ApplicationHelper
  	def parse_key(key)
  		output = key.gsub("_"," ")
  		return output
- 	end
+	end
+
+	def sortable(column, title = nil)
+		title ||= column.titleize
+		direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
+		arrow_val = (direction =="asc") ? "icon-arrow-up": "icon-arrow-down"
+		link_to raw("#{title} <i class='#{arrow_val}'> </i>"), {:sort => column, :direction => direction}
+	end
+
+	def sort_column
+		Item.column_names.include?(params[:sort]) ? params[:sort] : "reporter"
+	end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+	end
  		
 end
