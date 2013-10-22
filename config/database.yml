@@ -13,11 +13,11 @@ development:
   port: 3306
   adapter: mysql2
   encoding: utf8
-  database: project_activity
+  database: rixeye_test
   pool: 5
-  username: projact
-  password: projact123
-  host: allservers
+  username: rixeye_t
+  password: rixeye-t-123
+  host: dev-sandbox-1
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
