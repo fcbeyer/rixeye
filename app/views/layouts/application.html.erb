@@ -8,8 +8,8 @@
   <%= csrf_meta_tags %>
 </head>
 
-<% if browser.ie? %>
-  <h5 class="alert-danger">This application is not designed to work in IE.  Please switch over to Chrome or Firefox for a better experience</h5>
+<% if acceptable_browser? %>
+  <h5 class="alert-danger" style="text-align: center">This application is not designed to work with versions of IE older than 10.  Please upgrade or switch over to Chrome or Firefox for a better experience</h5>
 <% end %>
 <body>
 
