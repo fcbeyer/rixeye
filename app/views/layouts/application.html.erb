@@ -57,7 +57,7 @@
     			</a>  
     			<ul class="dropdown-menu">
     				<% @project_list.each do |project| %>
-    				    <li><button <%= display_button("small","success") %> onclick="searchRevisions('<%= get_find_revisions_url(project) %>')" type="button"><%= project.display_name %></button></li>
+    					<li><a onclick="searchRevisions('<%= get_find_revisions_url(project) %>');return false"><%= project.display_name %></a></li>
      				<% end %> 
     			</ul>  
   			</li>
