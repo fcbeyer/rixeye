@@ -32,17 +32,22 @@
   </tr>
 </table>
 
-<div id="short_cuts">
-	<h5>Jump To</h5>
-	<ol>
-		<li><%= link_to @project.display_name + " commits", project_commits_path(@project.id) %></li>
-		<li><%= link_to @project.display_name + " Whitelist", project_whitelist_path(@project.id) %></li>
-		<li><a href="#commits_by_time_of_day_chart">Commits By Time Of Day Chart</a></li>
-		<li><a href="#commits_by_day_chart">Commits By Day Chart</a></li>
-		<li><a href="#commits_by_week_chart">Commits By Week Chart</a></li>
-		<li><a href="#commits_by_author_chart">Commits By Author Chart</a></li>
-		<li><a href="#commits_by_issue_chart">Commits By Issue Chart</a></li>
-	</ol>
+<div id="short_cuts" class="span3">
+	<div class="well" style="max-width: 340px; padding: 8px 0;">
+		<ul class="nav nav-list ">
+			<li class="nav-header" style="text-align: center">Data</li>
+			<li class="divider"></li>
+			<li><%= link_to "Commits", project_commits_path(@project.id) %></li>
+			<li><%= link_to "Whitelist", project_whitelist_path(@project.id) %></li>
+			<li class="nav-header" style="text-align: center">Reports</li>
+			<li class="divider"></li>
+			<li><a href="#commits_by_time_of_day_chart">Commits Heat</a></li>
+			<li><a href="#commits_by_day_chart">Commits By Day</a></li>
+			<li><a href="#commits_by_week_chart">Commits By Week</a></li>
+			<li><a href="#commits_by_author_chart">Commits By Author</a></li>
+			<li><a href="#commits_by_issue_chart">Commits By Issue</a></li>
+		</ul>
+	</div>
 </div>
 
 <div class="container">
