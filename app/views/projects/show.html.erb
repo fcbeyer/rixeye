@@ -1,44 +1,60 @@
+<script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"><"text/script"></script>
+<script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
 <p id="notice"><%= notice %></p>
-
-<table class="table table-bordered table-hover">
-  <tr>
-    <th>Name</th>
-    <th>Display Name</th>
-    <th>Url Path</th>
-    <th>Base Revision</th>
-    <th>Last Revision</th>
-    <th>Commits</th>
-    <th>Jira Issues</th>
-    <th>Last Search</th>
-    <th>Active</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <td><%= @project.name %></td>
-    <td><%= @project.display_name %></td>
-    <td><%= @project.url_path %></td>
-    <td><%= @project.base_revision %></td>
-    <td><%= @project.last_revision %></td>
-    <td><%= @project.commits.count %></td>
-    <td><%= total_dev_issues(@project) %></td>
-    <td><%= display_time(@project.last_run_time) %></td>
-    <td><%= active_flag_display(@project.active) %></td>
-    <td><%= link_to 'Edit', edit_project_path(@project), :class => "btn btn-small" %></td>
-    <td><%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small" %></td>
-  </tr>
-</table>
-
-<div id="short_cuts">
-	<h5>Jump To</h5>
-	<ol>
-		<li><%= link_to @project.display_name + " commits", project_commits_path(@project.id) %></li>
-		<li><%= link_to @project.display_name + " Whitelist", project_whitelist_path(@project.id) %></li>
-		<li><a href="#commits_by_day_chart">Commits By Day Chart</a></li>
-		<li><a href="#commits_by_week_chart">Commits By Week Chart</a></li>
-		<li><a href="#commits_by_author_chart">Commits By Author Chart</a></li>
-		<li><a href="#commits_by_issue_chart">Commits By Issue Chart</a></li>
-	</ol>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<table class="table table-bordered table-hover">
+			  <tr>
+			    <th>Name</th>
+			    <th>Display Name</th>
+			    <th>Url Path</th>
+			    <th>Base Revision</th>
+			    <th>Last Revision</th>
+			    <th>Commits</th>
+			    <th>Jira Issues</th>
+			    <th>Last Search</th>
+			    <th>Active</th>
+			    <th></th>
+			    <th></th>
+			  </tr>
+			  <tr>
+			    <td><%= @project.name %></td>
+			    <td><%= @project.display_name %></td>
+			    <td><%= @project.url_path %></td>
+			    <td><%= @project.base_revision %></td>
+			    <td><%= @project.last_revision %></td>
+			    <td><%= @project.commits.count %></td>
+			    <td><%= total_dev_issues(@project) %></td>
+			    <td><%= display_time(@project.last_run_time) %></td>
+			    <td><%= active_flag_display(@project.active) %></td>
+			    <td><%= link_to 'Edit', edit_project_path(@project), :class => "btn btn-small" %></td>
+			    <td><%= link_to 'Delete', @project, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small" %></td>
+			  </tr>
+			</table>
+		</div>
+		<div id="short_cuts" class="span2">
+			<div class="well" style="max-width: 340px; padding: 8px 0;">
+				<ul class="nav nav-list ">
+					<li class="nav-header" style="text-align: center">Data</li>
+					<li class="divider"></li>
+					<li><%= link_to "Commits", project_commits_path(@project.id) %></li>
+					<li><%= link_to "Whitelist", project_whitelist_path(@project.id) %></li>
+					<li class="nav-header" style="text-align: center">Reports</li>
+					<li class="divider"></li>
+					<li><a href="#commits_by_time_of_day_chart">Commits Heat</a></li>
+					<li><a href="#commits_by_day_chart">Commits By Day</a></li>
+					<li><a href="#commits_by_week_chart">Commits By Week</a></li>
+					<li><a href="#commits_by_author_chart">Commits By Author</a></li>
+					<li><a href="#commits_by_issue_chart">Commits By Issue</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="span10" id="commits_by_time_of_day_chart" style="width:75%; height:600px;">
+			<%= javascript_tag "createHeatGraph(#{@heat_graph})" %>
+		</div>
+	</div>
 </div>
 
 <h6 align="center" >Commits By Day</h6>

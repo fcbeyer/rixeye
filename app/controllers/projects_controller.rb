@@ -8,63 +8,23 @@ class ProjectsController < ApplicationController
   
   def find_revisions
   	project = Project.find(params[:id])
-  	rev_from = project.last_revision.nil? ? project.base_revision : project.last_revision + 1
-  	log_file = project.name + ".xml"
-  	rev_to = "HEAD"
-  	revision_results = []
-  	problem = false
-  	have_new_revision_data = true
-  	
-  	begin
-  		response = system "svn log --verbose --username #{Rixeye::Application.config.rixeye_settings['SVN_User']} --password #{Rixeye::Application.config.rixeye_settings['SVN_Password']} #{project.url_path} -r#{rev_from}:#{rev_to} --xml > #{log_file}"
-  		doc = Nokogiri::XML(File.open(log_file))
-  		if !doc.xpath('/log/logentry').empty?
-		  	doc.xpath('/log/logentry').each do |entry|
-		  		msg = parse_message(entry.xpath('./msg').text)
-		  		cur_revision = Commit.new
-		  		cur_revision.project_id = project.id
-		  		cur_revision.issue = msg['issue']
-		  		temp = entry.attribute('revision')
-		  		cur_revision.revision_number = temp.to_s
-		  		cur_revision.committed_at = Time.iso8601(entry.xpath('./date').text)
-		  		cur_revision.author = entry.xpath('./author').text
-		  		cur_revision.message = msg['complete']
-		  		cur_revision.save
-		  		entry.xpath('./paths/path').each do |path|
-		  			cur_path = Path.new
-		  			cur_path.commits_id = cur_revision.id
-		  			temp = path.attribute('kind')
-		  			cur_path.kind = temp.to_s
-		  			temp = path.attribute('action')
-		  			cur_path.action = temp.to_s
-		  			cur_path.file = path.text
-		  			cur_path.save
-		  		end
-		  	end
-		  	
-		  	#update project.last_revision to the last one we found just now
-		  	temp = doc.xpath('/log/logentry').last.attribute('revision')
-		  	project.last_revision = temp.to_s
-		  else
-		  	#nothing new was found
-		  	have_new_revision_data = false
-		  end
-  	rescue => ex
-  		ex.printStackTrace
-			problem = true
-  	end
-	  
-	  project.last_run_time = Time.now
-	  project.save
-  	
-  	revision_results.push(have_new_revision_data)
-  	revision_results.push(project.display_name)
-  	revision_results.push(problem)
-  	
-  	respond_to do |format|
-			format.json {render json: revision_results}
-			format.html {render html: revision_results}
-  	end  	
+    log_file = project.name + ".xml"
+    revision_results = []
+    problem = false
+    have_new_revision_data = true
+    results_hash = project.parse_xml(log_file,problem,have_new_revision_data)
+    
+    project.last_run_time = Time.now
+    project.save
+    
+    revision_results.push(results_hash[:have_new_revision_data])
+    revision_results.push(project.display_name)
+    revision_results.push(results_hash[:problem])
+    
+    respond_to do |format|
+      format.json {render json: revision_results}
+      format.html {render html: revision_results}
+    end  	
   end #end find_revisions
   
   def index
@@ -80,6 +40,16 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    week = create_day_groups
+    week.each_key {|key| week[key] = week[key].group_by {|commit| commit.committed_at.strftime('%H')}}
+    @heat_graph,built_day = [],[]
+    week.keys.each_with_index do |key,index|
+    	week[key].each do |hour,commits_for_one_hour|
+    		built_day.push([hour.to_i,index,commits_for_one_hour.count])
+    	end
+    	@heat_graph.push(built_day.dup)
+    	built_day.clear
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -147,4 +117,17 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+private
+
+	def create_day_groups
+  	days = Array.new(7).map {|x| x = []}
+  	@project.commits.each do |commit|
+			days[commit.committed_at.wday].push(commit)
+  	end
+  	daysHash = {}
+  	[:sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday].each_with_index {|day,key| daysHash[day] = days[key]}
+  	return daysHash
+  end  
+
 end

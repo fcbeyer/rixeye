@@ -1,38 +1,43 @@
 <h1 class="fancy-header">Tracked Projects</h1>
-
-<table class="table table-bordered table-condensed table-hover">
-	<thead>
-	  <tr>
-		<th>Name</th>
-		<th>Url Path</th>
-		<th>Base Revision</th>
-		<th>Last Revision</th>
-		<th>Commits</th>
-		<th>Jira Issues</th>
-		<th>Last Search</th>
-		<th>Active</th>
-		<th></th>
-		<th></th>
-	  </tr>
-	</thead>
-
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= link_to project.display_name, project, :class => "btn btn-small"  %></td>
-    <td><%= project.url_path %></td>
-    <td><%= project.base_revision %></td>
-    <td><%= project.last_revision %></td>
-    <td><%= project.commits.count %></td>
-    <td><%= total_dev_issues(project) %></td>
-    <td><%= display_time(project.last_run_time) %></td>
-    <td><%= active_flag_display(project.active) %></td>
-    <td><%= link_to 'Edit', edit_project_path(project), :class => "btn btn-small" %></td>
-    <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Project', new_project_path, :class => "btn" %>
-
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+	
+			<table class="table table-bordered table-condensed table-hover">
+				<thead>
+				  <tr>
+					<th>Name</th>
+					<th>Url Path</th>
+					<th>Base Revision</th>
+					<th>Last Revision</th>
+					<th>Commits</th>
+					<th>Jira Issues</th>
+					<th>Last Search</th>
+					<th>Active</th>
+					<th></th>
+					<th></th>
+				  </tr>
+				</thead>
+			
+			<% @projects.each do |project| %>
+			  <tr>
+			    <td><%= link_to project.display_name, project, :class => "btn btn-small"  %></td>
+			    <td><%= project.url_path %></td>
+			    <td><%= project.base_revision %></td>
+			    <td><%= project.last_revision %></td>
+			    <td><%= project.commits.count %></td>
+			    <td><%= total_dev_issues(project) %></td>
+			    <td><%= display_time(project.last_run_time) %></td>
+			    <td><%= active_flag_display(project.active) %></td>
+			    <td><%= link_to 'Edit', edit_project_path(project), :class => "btn btn-small" %></td>
+			    <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %></td>
+			  </tr>
+			<% end %>
+			</table>
+			
+			<br />
+			
+			<%= link_to 'New Project', new_project_path, :class => "btn" %>
+		</div>
+	</div>
+</div>

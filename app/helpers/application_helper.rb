@@ -15,7 +15,7 @@ module ApplicationHelper
  	end
  	
  	def display_button(size, color)
- 		if browser.ie?
+ 		if acceptable_browser?
  			return enabled_or_disabled_button(size,color,false)
  		else
  			return enabled_or_disabled_button(size,color,true)
@@ -59,6 +59,10 @@ module ApplicationHelper
 
 	def sort_direction
 		%w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+	end
+	
+	def acceptable_browser?
+		browser.ie? and (browser.version.to_i < 10)
 	end
  		
 end
