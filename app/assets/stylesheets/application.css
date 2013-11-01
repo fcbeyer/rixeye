@@ -31,3 +31,8 @@ input[type="number"],
 	text-align: center;
 	color: orangered
 }
+
+.pagination{
+	margin: 20px;
+	text-align: center;
+}
