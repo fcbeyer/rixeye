@@ -68,7 +68,6 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-      	puts "FUCK YOU"
         format.html { redirect_to project_whitelist_path(@whitelist.project_id), notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
