@@ -27,7 +27,7 @@ function searchRevisionsComplete(data){
 				myNotification = "No new data was found";
 			}
 		}
-		var notification = window.webkitNotifications.createNotification('http://www.patientkeeper.com/images/patientkeeper.gif',mySubject,myNotification);
+		var notification = window.webkitNotifications.createNotification('https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg',mySubject,myNotification);
 		notification.show();
 		setTimeout(function(){
 			notification.cancel();
@@ -100,4 +100,100 @@ function createHeatGraph(heat_data){
 	});
     
 });
+}
+
+function createAuthorGraph(author_data,author_list){
+	$(function () {
+	    $('#commits_by_author_chart').highcharts({
+	
+		    chart: {
+                type: 'column',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Commits by Author'
+            },
+            xAxis: {
+                categories: author_list,
+                labels: {
+                	rotation: 45,
+                	step: 2
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Commits'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">Commits: </td>' +
+                    '<td style="padding:0"><b>{point.y} </b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+            	data: author_data,
+            	name: "Authors"
+            }]
+		
+		});
+	    
+	});
+}
+
+function createIssueGraph(issue_data,issue_list){
+	$(function () {
+	    $('#commits_by_issue_chart').highcharts({
+	
+		    chart: {
+                type: 'column',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Commits by Issue'
+            },
+            xAxis: {
+                categories: issue_list,
+                labels: {
+                	rotation: 45,
+                	step: 30
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Commits'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">Commits: </td>' +
+                    '<td style="padding:0"><b>{point.y} </b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+            	data: issue_data,
+            	name: "Issue"
+            }]
+		
+		});
+	    
+	});
 }
