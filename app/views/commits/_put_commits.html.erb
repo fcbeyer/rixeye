@@ -21,7 +21,7 @@
 					<% commits_for_one_day.each do |commit| %>
 					  <tr>
 					    <td><%= commit.author %></td>
-					    <td><%= create_fisheye_link(commit,@current_project) %></td>
+					    <td><%= create_collabnet_link(commit,@current_project) %></td>
 					    <td><%= create_jira_link(commit) %></td>
 					    <td><%= commit.message %></td>
 					    <td><%= find_paths(commit) + " files" %></td>
