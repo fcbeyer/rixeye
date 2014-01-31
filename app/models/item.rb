@@ -7,13 +7,13 @@ class Item < ActiveRecord::Base
   
   def verify_project_key
   	match_found = false
-  	Rixeye::Application.config.rixeye_settings['Jira_Project_List'].each do |project_key|
+  	Rixeye::Application.config.rixeye_settings['Project_Key_list'].each do |project_key|
   		if self.issue.match(/#{project_key}-\d+/)
   			match_found = true
   		end
   	end
   	if !match_found
-  		errors.add(:issue," does not have a valid project key.  Please use one of the following " + Rixeye::Application.config.rixeye_settings['Jira_Project_List'].join(", "))
+  		errors.add(:issue," does not have a valid project key.  Please use one of the following " + Rixeye::Application.config.rixeye_settings['Project_Key_list'].join(", "))
   		return false
   	end
   end
