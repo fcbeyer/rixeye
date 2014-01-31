@@ -39,4 +39,39 @@ class Project < ActiveRecord::Base
   	self.last_revision.nil? ? self.base_revision : self.last_revision + 1
   end
   
+  def group_by_author
+    self.commits.group("author").count
+  end
+  
+  def group_by_issue
+    issue_graph = self.commits.group("issue").count
+    #need to delete the empty entry for all the commits that have NO issue number
+    issue_graph.delete("")
+    return issue_graph
+  end
+  
+  def group_by_date(start_date)
+    #find all commits for this project with a date greater than or equal to start_date
+    arr_of_dates = self.commits.where(Commit.arel_table[:committed_at].gteq(start_date))
+    #group the results by comitted_at date (drop the time)
+    date_hash = arr_of_dates.group_by {|thing| thing.committed_at.to_date }
+    return date_hash
+  end
+  
+  def group_by_day_of_week(start_date)
+    #be awesome
+  end
+  
+  def group_by_week(start_date)
+    #be awesome
+  end
+  
+  def group_by_month(start_date)
+    #be awesome
+  end
+  
+  def group_by_year(start_date)
+    #be awesome
+  end
+  
 end
