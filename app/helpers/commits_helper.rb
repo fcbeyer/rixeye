@@ -13,6 +13,10 @@ module CommitsHelper
 		return raw("<a href=\"#{Rixeye::Application.config.rixeye_settings['Fisheye_URL']}/#{project.name}?cs=#{commit.revision_number}\">#{commit.revision_number}</a></li>")
 	end
 	
+	def create_collabnet_link(commit,project)
+	  return raw("<a href=\"#{Rixeye::Application.config.rixeye_settings['CollabNet_URL']}&revision=#{commit.revision_number}\">#{commit.revision_number}</a></li>")
+	end
+	
 	def find_paths(commit)
 		paths = Path.where(:commits_id => commit.id)
 		return paths.count.to_s
