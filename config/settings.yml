@@ -1,11 +1,12 @@
 development:
-  SVN_User: build
-  SVN_Password: build
+  SVN_User: fbeyer
+  SVN_Password: Newton02
   Git_User: build
   Git_Password: build
-  Jira_URL: https://jira/browse/
-  Jira_Project_List: ['DEV','AUTO','INSTALL']
+  Jira_URL: https://jira.intuit.com/browse
+  Project_Key_list: ['QBSE','QBE','QBUI']
   Fisheye_URL: https://jira-t:8443/fisheye/changelog/
+  CollabNet_URL: https://qblab-svn.corp.intuit.net/viewvc/quickbase?view=revision
 
 
 test:
@@ -13,9 +14,10 @@ test:
   SVN_Password: build
   Git_User: build
   Git_Password: build
-  Jira_URL: https://jira-t/browse/
-  Jira_Project_List: ['DEV','AUTO','INSTALL']
+  Jira_URL: https://jira.intuit.com/browse
+  Project_Key_list: ['QBSE','QBE','QBUI']
   Fisheye_URL: https://jira-t:8443/fisheye/changelog/
+  CollabNet_URL: https://qblab-svn.corp.intuit.net/viewvc/quickbase?view=revision
 
 
 production:
@@ -23,6 +25,7 @@ production:
   SVN_Password: build
   Git_User: build
   Git_Password: build
-  Jira_URL: https://jira/browse/
-  Jira_Project_List: ['DEV','AUTO','INSTALL']
+  Jira_URL: https://jira.intuit.com/browse
+  Project_Key_list: ['QBSE','QBE','QBUI']
   Fisheye_URL: https://jira-t:8443/fisheye/changelog/
+  CollabNet_URL: https://qblab-svn.corp.intuit.net/viewvc/quickbase?view=revision
