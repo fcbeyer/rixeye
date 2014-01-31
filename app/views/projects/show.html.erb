@@ -56,6 +56,9 @@
 		</div>
 	</div>
 </div>
+<div class="span10" id="commits_by_date_chart" style="width:95%; height:600px;">
+	<%= javascript_tag "createDateGraph(#{@date_graph.values},#{@date_graph.keys})" %>
+</div>
 <div class="span10" id="commits_by_issue_chart" style="width:95%; height:600px;">
 	<%= javascript_tag "createIssueGraph(#{@issue_graph.values},#{@issue_graph.keys})" %>
 </div>
