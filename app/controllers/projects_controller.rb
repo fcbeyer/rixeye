@@ -48,6 +48,22 @@ class ProjectsController < ApplicationController
     	@heat_graph.push(built_day.dup)
     	built_day.clear
     end
+    author_graph = @project.commits.group("author").count
+    @author_list = []
+    @author_data = []
+    author_graph.each_key {|key| @author_list.push(key)}
+    author_graph.each_value {|value| @author_data.push(value)}
+    issue_graph = @project.commits.group("issue").count
+    issue_graph.delete("")
+    @issue_list = []
+    @issue_data = []
+    issue_graph.each_key {|key| @issue_list.push(key)}
+    issue_graph.each_value {|value| @issue_data.push(value)}
+    
+    #<h6 align="center" >Commits By Issue</h6>
+    #<%= column_chart @project.commits.group("issue").count, :id => "commits_by_issue_chart", :min => 0, :max => 20 %>
+    
+    #<br />
 
     respond_to do |format|
       format.html # show.html.erb
