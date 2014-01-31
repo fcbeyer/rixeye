@@ -20,9 +20,14 @@ class Commit < ActiveRecord::Base
   
   def self.parse_message_text(message)
 		msg = Hash['issue',"",'complete',message]
-		match = message.match(/DEV-\d+/)
-		msg['issue'] = match[0] unless match.nil?
-		return msg
+    Rixeye::Application.config.rixeye_settings['Project_Ket_list'].each do |key|
+      match = message.match(/#{key}\d+/)
+      if !match.nil?
+        msg['issue'] = match[0]
+        return msg
+      end
+    end
+    return msg
 	end
 	 
 end
