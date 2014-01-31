@@ -47,7 +47,7 @@
 					<li><a href="#commits_by_day_chart">Commits By Day</a></li>
 					<li><a href="#commits_by_week_chart">Commits By Week</a></li>
 					<li><a href="#commits_by_author_chart">Commits By Author</a></li>
-					<li><a href="#commits_by_issue_chart">Commits By Issue</a></li>
+					<li><a href="#commits_by_issue1_chart">Commits By Issue</a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,20 +56,11 @@
 		</div>
 	</div>
 </div>
-
-<h6 align="center" >Commits By Day</h6>
-<%= line_chart @project.commits.group_by_day(:committed_at).count, :id => "commits_by_day_chart" %>
-
-
-<h6 align="center" >Commits By Week</h6>
-<%= line_chart @project.commits.group_by_week(:committed_at).count, :id => "commits_by_week_chart" %>
-
-<h6 align="center" >Commits By Author</h6>
-<%= column_chart @project.commits.group("author").count, :id => "commits_by_author_chart" %>
-
-<h6 align="center" >Commits By Issue</h6>
-<%= column_chart @project.commits.group("issue").count, :id => "commits_by_issue_chart", :min => 0, :max => 20 %>
-
-<br />
+<div class="span10" id="commits_by_issue_chart" style="width:95%; height:600px;">
+	<%= javascript_tag "createIssueGraph(#{@issue_data},#{@issue_list})" %>
+</div>
+<div class="span10" id="commits_by_author_chart" style="width:95%; height:600px;">
+	<%= javascript_tag "createAuthorGraph(#{@author_data},#{@author_list})" %>
+</div>
 
 <%= link_to 'Back', projects_path %>
