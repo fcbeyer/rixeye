@@ -51,8 +51,8 @@ class ProjectsController < ApplicationController
     
     @author_graph = @project.group_by_author
     @issue_graph = @project.group_by_issue
-    
-    #@date_list = @project.group_by_date
+    test = Commit.find(16100)
+    @date_graph = @project.group_by_date(test.committed_at)
     #@week_list = @project.group_by_week
     #@month_list = @project.group_by_month
     #@year_list = @project.group_by_year
