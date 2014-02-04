@@ -55,8 +55,9 @@ class Project < ActiveRecord::Base
     arr_of_dates = self.commits.where(Commit.arel_table[:committed_at].gteq(start_date))
     #group the results by comitted_at date (drop the time)
     date_hash = arr_of_dates.group_by {|thing| thing.committed_at.to_date }
-    date_hash.each_pair {|key,value| date_hash[key] = value.count }
-    return date_hash
+    pruned_hash = Hash.new
+    date_hash.each_pair {|key,value| pruned_hash[key.to_s] = value.count }
+    return pruned_hash
   end
   
   def group_by_day_of_week(start_date)
@@ -65,6 +66,11 @@ class Project < ActiveRecord::Base
   
   def group_by_week(start_date)
     #be awesome
+    arr_of_dates = self.commits.where(Commit.arel_table[:committed_at].gteq(start_date))
+    date_hash = arr_of_dates.group_by {|thing| thing.committed_at.to_date.beginning_of_week }
+    pruned_hash = Hash.new
+    date_hash.each_pair {|key,value| pruned_hash[key.to_s] = value.count }
+    return pruned_hash
   end
   
   def group_by_month(start_date)
