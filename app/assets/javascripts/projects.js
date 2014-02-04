@@ -198,52 +198,79 @@ function createIssueGraph(issue_data,issue_list){
 	});
 }
 
+function dateMorpher(dates){
+	for(var i = 0; i < dates.length; i++){
+		dates[i] = new Date(dates[i]).toDateString();
+	}
+	return dates;
+}
+
 function createDateGraph(date_data,date_list){
+	date_list = dateMorpher(date_list);
 	$(function () {
         $('#commits_by_date_chart').highcharts({
             title: {
-                text: 'Monthly Average Temperature',
+                text: 'Commits By Date',
                 x: -20 //center
             },
-            subtitle: {
-                text: 'Source: WorldClimate.com',
-                x: -20
-            },
             xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                categories: date_list,
+                labels: {
+                	rotation: 45
+                },
+                type: "datetime"
             },
             yAxis: {
                 title: {
-                    text: 'Temperature (°C)'
+                    text: 'Number of Commits'
                 },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
+                min: 0
             },
-            tooltip: {
-                valueSuffix: '°C'
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+            tooltip : {
+            	headerFormat : '<b>{point.key}</b><br>',
+	            pointFormat : '{point.y} Commits'
             },
             series: [{
-                name: 'Tokyo',
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-            }, {
-                name: 'New York',
-                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-            }, {
-                name: 'Berlin',
-                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-            }, {
-                name: 'London',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            	name: 'Commits',
+                data: date_data
+            }]
+        });
+    });
+}
+
+function formatToolTip(){
+	var endOfWeek = new Date(this.key);
+	var endDate = new Date(endOfWeek.setDate(endOfWeek.getDate() + 6)).toDateString();
+	return '<b>' + this.key + ' - ' + endDate + '</b><br>' + this.y + ' Commits';
+}
+
+function createWeekGraph(week_data,week_list){
+	week_list = dateMorpher(week_list);
+	$(function () {
+        $('#commits_by_week_chart').highcharts({
+            title: {
+                text: 'Commits By Week',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: week_list,
+                labels: {
+                	rotation: 45
+                },
+                type: "datetime"
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Commits'
+                },
+                min: 0
+            },
+            tooltip : {
+            	formatter : formatToolTip
+            },
+            series: [{
+            	name: 'Commits',
+                data: week_data
             }]
         });
     });
