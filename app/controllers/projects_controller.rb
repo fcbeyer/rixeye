@@ -53,7 +53,7 @@ class ProjectsController < ApplicationController
     @issue_graph = @project.group_by_issue
     test = Commit.find(16100)
     @date_graph = @project.group_by_date(test.committed_at)
-    #@week_list = @project.group_by_week
+    @week_graph = @project.group_by_week(test.committed_at)
     #@month_list = @project.group_by_month
     #@year_list = @project.group_by_year
 
