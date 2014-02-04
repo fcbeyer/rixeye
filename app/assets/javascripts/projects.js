@@ -238,7 +238,7 @@ function createDateGraph(date_data,date_list){
     });
 }
 
-function formatToolTip(){
+function formatWeekToolTip(){
 	var endOfWeek = new Date(this.key);
 	var endDate = new Date(endOfWeek.setDate(endOfWeek.getDate() + 6)).toDateString();
 	return '<b>' + this.key + ' - ' + endDate + '</b><br>' + this.y + ' Commits';
@@ -266,7 +266,7 @@ function createWeekGraph(week_data,week_list){
                 min: 0
             },
             tooltip : {
-            	formatter : formatToolTip
+            	formatter : formatWeekToolTip
             },
             series: [{
             	name: 'Commits',
