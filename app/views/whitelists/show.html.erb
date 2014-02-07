@@ -22,7 +22,7 @@
 		
 		  <% @whitelist.items.order(sort_column + ' ' + sort_direction).each do |item| %>
 			  <tr>
-				<td><u><%= create_jira_link(item) %></u></td>
+				<td><u><%= create_issue_tracker_link(item) %></u></td>
 				<td><%= item.comment %></td>
 				<td><%= item.reporter%></td>
 				<td><%= time_tag(item.created_at,:format=>'%B %d, %Y %l:%M %p') %></td>
