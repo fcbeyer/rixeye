@@ -205,6 +205,14 @@ function dateMorpher(dates){
 	return dates;
 }
 
+function stockMorpher(dates,commits){
+	var stock_data = [];
+	for(var i = 0; i < dates.length; i++){
+		stock_data[i] = [new Date(dates[i]).valueOf(),commits[i]];
+	}
+	return stock_data;
+}
+
 function createDateGraph(date_data,date_list){
 	date_list = dateMorpher(date_list);
 	$(function () {
@@ -239,25 +247,23 @@ function createDateGraph(date_data,date_list){
 }
 
 function formatWeekToolTip(){
-	var endOfWeek = new Date(this.key);
+	var endOfWeek = new Date(this.x);
 	var endDate = new Date(endOfWeek.setDate(endOfWeek.getDate() + 6)).toDateString();
-	return '<b>' + this.key + ' - ' + endDate + '</b><br>' + this.y + ' Commits';
+	return '<b>' + (new Date(this.x).toDateString()) + ' - ' + endDate + '</b><br>' + this.y + ' Commits';
 }
 
-function createWeekGraph(week_data,week_list){
-	week_list = dateMorpher(week_list);
+function createWeekGraph(commits,dates){
+	chart_data = stockMorpher(dates,commits);
 	$(function () {
-        $('#commits_by_week_chart').highcharts({
+        $('#commits_by_week_chart').highcharts('StockChart',{
             title: {
                 text: 'Commits By Week',
                 x: -20 //center
             },
             xAxis: {
-                categories: week_list,
                 labels: {
                 	rotation: 45
-                },
-                type: "datetime"
+                }
             },
             yAxis: {
                 title: {
@@ -268,9 +274,39 @@ function createWeekGraph(week_data,week_list){
             tooltip : {
             	formatter : formatWeekToolTip
             },
+            rangeSelector: {
+            	buttons: [
+            		{
+						type: 'month',
+						count: 3,
+						text: '3m'
+					}, 
+					{
+						type: 'month',
+						count: 6,
+						text: '6m'
+					}, 
+					{
+						type: 'ytd',
+						text: 'YTD'
+					}, 
+					{
+						type: 'year',
+						count: 1,
+						text: '1y'
+					}, 
+					{
+						type: 'all',
+						text: 'All'
+					}]
+            },
             series: [{
             	name: 'Commits',
-                data: week_data
+                data: chart_data,
+                marker: {
+                	enabled: true,
+                	radius: 2
+                }
             }]
         });
     });
