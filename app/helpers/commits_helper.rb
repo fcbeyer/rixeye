@@ -10,6 +10,7 @@ module CommitsHelper
 	end
 	
 	def create_code_diff_link(commit,project)
+	  #TODO: FIX DIFF LINK IT CURRENTLY IS BROKEN WHAT IS THE BEST WAY TO DO THIS?
 		return raw("<a href=\"#{Rixeye::Application.config.rixeye_settings['Code_Diff_URL']}/#{project.name}?cs=#{commit.revision_number}\">#{commit.revision_number}</a></li>")
 	end
 	
