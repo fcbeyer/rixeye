@@ -213,10 +213,10 @@ function stockMorpher(dates,commits){
 	return stock_data;
 }
 
-function createDateGraph(date_data,date_list){
-	date_list = dateMorpher(date_list);
+function createDateGraph(date_commits,date_days){
+	var date_list = stockMorpher(date_days,date_commits);
 	$(function () {
-        $('#commits_by_date_chart').highcharts({
+        $('#commits_by_date_chart').highcharts('StockChart',{
             title: {
                 text: 'Commits By Date',
                 x: -20 //center
@@ -225,8 +225,7 @@ function createDateGraph(date_data,date_list){
                 categories: date_list,
                 labels: {
                 	rotation: 45
-                },
-                type: "datetime"
+                }
             },
             yAxis: {
                 title: {
@@ -240,7 +239,11 @@ function createDateGraph(date_data,date_list){
             },
             series: [{
             	name: 'Commits',
-                data: date_data
+                data: date_list,
+                marker: {
+                	enabled: true,
+                	radius: 3
+                }
             }]
         });
     });
@@ -305,7 +308,7 @@ function createWeekGraph(commits,dates){
                 data: chart_data,
                 marker: {
                 	enabled: true,
-                	radius: 2
+                	radius: 3
                 }
             }]
         });
