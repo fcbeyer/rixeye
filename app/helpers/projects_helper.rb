@@ -9,13 +9,16 @@ module ProjectsHelper
 	end
 	
 	def total_dev_issues(project)
-		dev_issues = project.commits.where("issue LIKE ?","QBE%")
-		total = 0
-		grouped = dev_issues.group_by { |commit| commit.issue }
-		grouped.each do |issue, grouping|
-			total += 1
-		end
-		return total
-	end
+	  dev_issues = Array.new
+	  Rixeye::Application.config.rixeye_settings['Project_Key_list'].each do |key|
+      dev_issues += project.commits.where("issue LIKE ?","#{key}%")
+    end
+    total = 0
+    grouped = dev_issues.group_by { |commit| commit.issue }
+    grouped.each do |issue, grouping|
+      total += 1
+    end
+    return total
+  end
 
 end
